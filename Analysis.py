@@ -40,11 +40,12 @@ st.write("In the graph above it can be shown that there are 42 makes of cars. Th
 
 
 #Nasinya
-
+st.header("CO2 Averages and Distributions")
 fig = px.box(cedf[cedf['Make'].isin(['SMART', 'HONDA','AUDI','BMW','LAMBORGHINI','BUGATTI'])].sort_values('CO2 Emissions(g/km)'), x='Make', y= "CO2 Emissions(g/km)",color_discrete_sequence=Pastel1, title='Representation of CO2 Emissions by Make')
 st.plotly_chart(fig)
 st.write ("This graph uses six makes from the list of 42 that are from different parts of the list when ranked by emissions. A box graph is used to show the distribution of the data for each of the different makes. The filled in boxes show where most of the information lies, and the colored horizontal lines represent where most of the information ends. Dots are used to show anomalies that do not match the majority of the data. The first two (moving left to right) have the lowest emissions per kilometer. It is shown by the box graph that the Honda sample’s emissions per kilometer span from around 100-275 g/km whereas the Smart Car’s emission rates are stable at around 150 g/km. This suggests that Smart Car has many similar models, and focuses on efficient emissions. Both Audi and BMW emit a medium amount of carbon per kilometer which is represented on the graph. Lamborghini and Bugatti emit very large amounts of carbon on average. There is a good amount of information about different Lamborghini models, so the different emission rates are easy to observe, but there is only data about one Bugatti model so there is not an accurate representation of all Bugatti cars. Overall, this graph allows us to easily compare the distributions of emissions for each of the models of six different makes.")
 
+st.header("CO2 Averages and Price")
 fig = px.bar(tmb, x='Make', y='CO2 Emissions(g/km)', color='Price', color_discrete_sequence=Pastel1, title='CO2 Emissions(g/km) by Make vs. Price')
 st.plotly_chart(fig)
 st.write ("The above graph shows six makes of cars in order of their average CO2 emissions per kilometer, and the colors of the columns represent the price range. The first two makes (going left to right), Smart and Honda, emit the least carbon per kilometer out of the 42 makes in the data set, and are also the lowest in price of these six. The second two makes, Audi and BMW, emit a medium amount of CO2 per kilometer as they are found in the exact middle of the emissions ranking, they are also in the medium price range. Lamborghini and Bugatti emit the most of the 42 makes on average, and are also very high in price. This data proves our hypothesis, which was that the average carbon emissions of gasoline cars per kilometer increase with the price of the car."
@@ -68,6 +69,7 @@ cylinder_low_emission.add_trace(go.Scatter(x=bottom_cylinders['Cylinders'],
 
 
 #Most Cylinders vs CO2 Emission (Sameer)
+st.header("The Relationship Between the Cylinders and the CO2 emissions")
 top_cylinders = average_per_make.sort_values("Cylinders").tail(20).reset_index()
 top_cylinders.dropna()
 
@@ -90,7 +92,7 @@ st.write("The x-axis is the number of cylinders in a car, and the y-axis is the 
 
 #Brand engine size vs CO2 emission (Leo)
 average_engine_size = cedf.groupby("Make", as_index=False).mean("Engine Size(L)")
-st.header("The Relationship Between the Engine size (L) and the CO2 emissions.")
+st.header("The Relationship Between the Engine size (L) and the CO2 emissions")
 #Total emissions brands compared with engine size
 fig_total = px.scatter(cedf, x='Engine Size(L)', y='CO2 Emissions(g/km)', color='Make',title="The Relationship Between Total CO2 Emissions makes and the Average Engine Size(L)",color_continuous_scale=Burgyl)
 st.plotly_chart(fig_total)
